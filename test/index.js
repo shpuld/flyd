@@ -276,23 +276,6 @@ describe('stream', function() {
       }));
       assert.equal(result, undefined);
     });
-    it('can create multi-level dependent streams inside a stream body', function() {
-      var result = 0;
-      var externalStream = stream(0);
-      stream(1).map(function() {
-        externalStream
-          .map(function() {
-            result += 1;
-            return 0;
-          })
-          .map(function() {
-            result += 2;
-            return 0;
-          });
-        return;
-      });
-      assert.equal(result, 3);
-    });
   })
 
   describe('ending a stream', function() {
